@@ -31,6 +31,7 @@ crt_net['conv_first.weight'] = pretrained_net['model.0.weight']
 crt_net['conv_first.bias'] = pretrained_net['model.0.bias']
 
 for k in tbd.copy():
+    print(crt_net[k])
     if 'RDB' in k:
         ori_k = k.replace('RRDB_trunk.', 'model.1.sub.')
         if '.weight' in k:
