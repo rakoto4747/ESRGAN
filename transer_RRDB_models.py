@@ -35,7 +35,7 @@ crt_net['conv_first.bias'] = pretrained_net['model.0.bias']
 for k in tbd.copy():
     if 'RDB' in k:
         ori_k = k.replace('RRDB_trunk.', 'model.1.sub.')
-        if '.weight' in k:
+        if '.weight' in k and '.conv1x1.weight' not in k: # adapt to the added conv1x1 layers
             ori_k = ori_k.replace('.weight', '.0.weight')
         elif '.bias' in k:
             ori_k = ori_k.replace('.bias', '.0.bias')
