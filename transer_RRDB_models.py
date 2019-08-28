@@ -7,6 +7,7 @@ save_path = '/content/gdrive/My Drive/ESRGAN/ESRGAN-test/models/ESRGANplus_x4_ne
 
 crt_model = arch.RRDBNet(3, 3, 64, 23, gc=32)
 crt_net = crt_model.state_dict()
+print(crt_net)
 
 load_net_clean = {}
 for k, v in pretrained_net.items():
@@ -15,6 +16,7 @@ for k, v in pretrained_net.items():
     else:
         load_net_clean[k] = v
 pretrained_net = load_net_clean
+print(pretrained_net)
 
 print('###################################\n')
 tbd = []
@@ -31,7 +33,6 @@ crt_net['conv_first.weight'] = pretrained_net['model.0.weight']
 crt_net['conv_first.bias'] = pretrained_net['model.0.bias']
 
 for k in tbd.copy():
-    print(pretrained_net[ori_k])
     if 'RDB' in k:
         ori_k = k.replace('RRDB_trunk.', 'model.1.sub.')
         if '.weight' in k:
