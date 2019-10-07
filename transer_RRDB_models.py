@@ -8,9 +8,6 @@ save_path = '/content/gdrive/My Drive/latest_D_new_arch.pth'
 crt_model = arch.RRDBNet(3, 3, 64, 23, gc=32)
 crt_net = crt_model.state_dict()
 
-print(pretrained_net.items())
-print(crt_net.items())
-
 load_net_clean = {}
 for k, v in pretrained_net.items():
     if k.startswith('module.'):
@@ -36,7 +33,7 @@ crt_net['conv_first.bias'] = pretrained_net['model.0.bias']
 for k in tbd.copy():
     if 'RDB' in k:
         ori_k = k.replace('RRDB_trunk.', 'model.1.sub.')
-        if '.weight' in k and '.conv1x1.weight' not in k: # adapt to the added conv1x1 layers
+        if '.weight' in k:
             ori_k = ori_k.replace('.weight', '.0.weight')
         elif '.bias' in k:
             ori_k = ori_k.replace('.bias', '.0.bias')
