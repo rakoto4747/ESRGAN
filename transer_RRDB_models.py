@@ -8,8 +8,8 @@ save_path = '/content/gdrive/My Drive/latest_D_new_arch.pth'
 crt_model = arch.RRDBNet(3, 3, 64, 23, gc=32)
 crt_net = crt_model.state_dict()
 
-print(pretrained_net)
-print(crt_net)
+print(pretrained_net.items())
+print(crt_net.items())
 
 load_net_clean = {}
 for k, v in pretrained_net.items():
