@@ -5,10 +5,11 @@ import RRDBNet_arch as arch
 pretrained_net = torch.load('/content/gdrive/My Drive/latest_D.pth')
 save_path = '/content/gdrive/My Drive/latest_D_new_arch.pth'
 
-print(pretrained_net)
-
 crt_model = arch.RRDBNet(3, 3, 64, 23, gc=32)
 crt_net = crt_model.state_dict()
+
+print(pretrained_net)
+print(crt_net)
 
 load_net_clean = {}
 for k, v in pretrained_net.items():
